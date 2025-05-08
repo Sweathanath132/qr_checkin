@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Token</title>
+</head>
+<body>
+    <h1>Your Token Number:</h1>
+    <p style="font-size: 30px;">{{ token }}</p>
+
+    <form action="{{ url_for('release') }}" method="post">
+        <button type="submit">Check Out</button>
+    </form>
+</body>
+</html>
