@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Check-In</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Check-in</title>
 </head>
 <body>
-    <h1>Scan this QR Code to Check-In</h1>
-    <img src="{{ qr_path }}" alt="QR Code">
+    <h1>Welcome to the Check-in Page</h1>
+    <p>Scan the QR code to check in:</p>
+    <!-- Ensure this is the correct path -->
+    <img src="{{ url_for('static', filename='qr_code.png') }}" alt="QR Code">
 </body>
 </html>
