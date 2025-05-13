@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
 # Generate the QR code once and save to static folder
-QR_DATA = "http://localhost:5000/checkin"
+QR_DATA = "https://qr-checkin-m3pk.onrender.com/checkin"
 QR_PATH = "static/qr_code.png"
 if not os.path.exists(QR_PATH):
     os.makedirs("static", exist_ok=True)
