@@ -5,21 +5,22 @@ import os
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
-# Generate the QR code once and save to static folder
-QR_DATA = "https://qr-checkin-m3pk.onrender.com/checkin"
-QR_PATH = "static/qr_code.png"
-if not os.path.exists(QR_PATH):
-    os.makedirs("static", exist_ok=True)
-    img = qrcode.make(QR_DATA)
-    img.save(QR_PATH)
-
-# Token storage
 tokens = {}
 next_token = 1
 
 @app.route("/")
 def home():
-    return render_template("index.html", qr_path=QR_PATH)
+    # Dynamically get full domain from request
+    base_url = request.url_root.rstrip('/')
+    qr_data = f"{base_url}/checkin"
+    qr_path = "static/qr_code.png"
+
+    # Generate QR code every time to ensure URL is correct
+    os.makedirs("static", exist_ok=True)
+    img = qrcode.make(qr_data)
+    img.save(qr_path)
+
+    return render_template("index.html", qr_path=qr_path)
 
 @app.route("/scan")
 def scan():
